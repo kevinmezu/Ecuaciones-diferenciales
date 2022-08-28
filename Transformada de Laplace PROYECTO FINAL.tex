@@ -1,0 +1,294 @@
+\documentclass[12pt,a4paper,twoside,onecolumn,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{latexsym,cancel}
+\usepackage{graphicx}
+\begin{document}
+\begin{titlepage}
+\centering
+{\includegraphics[width=0.2\textwidth]{Logo Unicauca}\par}
+\vspace{1cm}
+{\bfseries\LARGE UNIVERSIDAD DEL CAUCA\par}
+\vspace{1cm}
+{\scshape\Large Facultad de Ingeniería Civil\par}
+\vspace{3cm}
+{\scshape\Huge LA TRANSFORMADA DE LAPLACE\par}
+\vspace{1cm}
+{\scshape\Large Proyecto final de ecuaciones diferenciales\par}
+\vspace{1cm}
+{\Large \textbf{Autor:} \par}
+{\Large Kevin Daniel Mezú Ballesteros\par}
+\vfill
+{\Large \textbf{Presentado a:} \par}
+{\Large Jhonatan Collazos Ramírez\par}
+\vspace{1cm}
+{\scshape\Large Agosto de 2022 \par}
+\end{titlepage}
+\tableofcontents
+\chapter{Introducción}
+En matemáticas, la transformada de Laplace es una transformada integral que convierte una función de variable real $t$ (normalmente el tiempo) a una función de variable compleja $s$. Tiene muchas aplicaciones en ciencia e ingeniería porque es una herramienta para resolver ecuaciones diferenciales. En particular, transforma ecuaciones diferenciales en ecuaciones algebraicas.
+\\
+\\
+La transformada de Laplace de una función $f(t)$ definida para todos los números reales $t\geq 0$, está  definida por:
+
+\[
+    \mathcal { L }  \left\lbrace { f ( t )  }\right\rbrace = \int_ { t= 0 } ^ { \infty } f ( t ) e^ { -st } dt
+\]
+\\
+\textbf{La Transformada de Laplace} es una técnica matemática que forma parte de ciertas transformadas integrales como la transformada de Fourier, la transformada de Hilbert, y la transformada de Mellin entre otras. Estas transformadas están definidas por medio de una integral impropia y cambian una función en una variable de entrada en otra función en otra variable. La transformada de Laplace puede ser usada para resolver Ecuaciones Diferenciales Lineales y Ecuaciones Integrales. Aunque se pueden resolver algún tipo de ED con coeficientes variables, en general se aplica a problemas con coeficientes constantes. Un requisito adicional es el conocimiento de las condiciones iniciales a la misma ED. Su mayor ventaja sale a relucir cuando la función en la variable independiente que aparece en la ED es una función seccionada.
+
+Cuando se resuelven ED usando la técnica de la transformada, se cambia una ecuación diferencial en un problema algebraico. La metodología consiste en aplicar la transformada a la ED y posteriormente usar las propiedades de la transformada. El problema de ahora consiste en encontrar una función en la variable independiente tenga una cierta expresión como transformada.
+\newpage
+\section{Características fundamentales}
+\begin{itemize}
+\item Es un método operacional que puede usarse para resolver ecuaciones diferenciales lineales.
+\item Las funciones senoidales, senoidales amortiguadas y exponenciales se pueden convertir en funciones algebraicas lineales en la variable $s$.
+\item Sirve para reemplazar operaciones como derivación e integración, por operaciones algebraicas en el plano complejo de la variable $s$.
+\item Permite usar técnicas gráficas para predecir el funcionamiento de un sistema sin necesidad de resolver el sistema de ecuaciones diferenciales correspondiente.
+\end{itemize}
+\section{Existencia de la Transformada}
+Condiciones suficientes para la existencia de la transformada de Laplace para $s > a$ de una función cualquiera:
+\begin{enumerate}
+\item Estar definida y ser continua a pedazos en el intervalo $[0;\infty)$
+\item Ser de orden exponencial $a$
+\end{enumerate}
+\chapter{Derivación de las transformadas}
+\section{Definición}
+Si $f(t)$ es una función de orden exponencial, si tanto $f(t)$ como $tf(t)$ tienen transformada de Laplace, y si $n\in \mathbb {N} $, entonces:
+\[
+    \mathcal { L } \left\lbrace { t^{n}{ f ( t )  }}\right\rbrace = (-1)^{n} \frac{d^{n}}{ds^{n}} \mathcal { L }  \left\lbrace { f ( t )  }\right\rbrace
+\]
+en particular, cuando $n=1$ obtenemos
+\[
+    \mathcal { L } \left\lbrace { t{ f ( t )  }}\right\rbrace = -\frac{d}{ds} \mathcal { L }  \left\lbrace { f ( t )  }\right\rbrace
+\]
+\subsection{Ejemplo}
+\begin{itemize}
+\item Calcular mediante el teorema de la derivada de una transformada la  siguiente transformada de Laplace:
+\[
+    \mathcal { L } \left\lbrace { t sen t   }\right\rbrace  
+\]
+\end{itemize}
+\subsection{Solución}
+Recordar que
+\[
+    \mathcal { L } \left\lbrace { sen a t   }\right\rbrace = \frac{a}{s^{2}+a^{2}}  \qquad \mathcal { L } \left\lbrace { t{ f ( t )  }}\right\rbrace = -\frac{d}{ds} \mathcal { L }  \left\lbrace { f ( t )  }\right\rbrace
+\]
+Entonces
+\[
+{ L } \left\lbrace { t{ sen t   }}\right\rbrace = -\frac{d}{ds} \mathcal { L }  \left\lbrace { sen t   }\right\rbrace=  -\frac{d}{ds} \frac{1}{s^{2}+1}
+\]
+\[
+=-(\frac{(s^{2}+1)(0)-1(2s)}{(s^{2}+1)^2}
+\]
+\[
+=(\frac{2s}{(s^{2}+1)^2}
+\]
+\section{MATLAB}
+MATLAB es una plataforma de programación y cálculo numérico utilizada por millones de ingenieros y científicos para analizar datos, desarrollar algoritmos y crear modelos.
+Las aplicaciones de MATLAB se desarrollan en un lenguaje de programación propio. Este lenguaje es interpretado, y puede ejecutarse tanto en el entorno interactivo. Este lenguaje permite operaciones de vectores y matrices, funciones, cálculo lambda, y programación orientada a objetos.\\
+\\
+\subsection{Código diseñado para la derivación de una ~\mbox{transformada} de ~\mbox{Laplace} en MATLAB}
+% CÓDIGO DE MATLAB PARA HALLAR LA DERIVADA DE UNA TRANSFORMADA DE LAPLACE
+\verb@>>clc@
+\\
+\verb@>>clear all@
+\\
+\verb@>>close all@
+\\
+\verb@>>syms t s@
+\\
+\verb@>>f= input('INGRESE LA FUNCIÓN')@
+\\
+\verb@>>laplace(f,t,s)@
+\\
+\verb@>>-diff(laplace(f,t,s))@
+\chapter{Integración de las transformadas}
+\section{Definición}
+Si $f(t)$ es una función de orden exponencial, si tanto $f(t)$ como $\frac{f(t)}{t}$ tienen transformada de Laplace, y si suponemos que $\mathcal { L } \left\lbrace {{ f ( t )  }}\right\rbrace = F(s)$, entonces:
+\[
+\int_ { s } ^ { \infty }\mathcal { L } \left\lbrace {{ f ( t )  }}\right\rbrace ds= \mathcal { L } \left\lbrace {{ \frac{f(t)}{t}  }}\right\rbrace
+\]
+\subsection{Ejemplo}
+\begin{itemize}
+\item Calcular mediante el teorema de la integral de una transformada la  siguiente transformada de Laplace:
+$\mathcal { L } \left\lbrace { \frac{sent}{t}}\right\rbrace$
+\end{itemize}
+\subsection{Solución}
+Recordar que 
+\[\mathcal { L } \left\lbrace { sen a t   }\right\rbrace = \frac{a}{s^{2}+a^{2}}  \qquad \int \frac{dv}{v^{2}+a^{2}}=\frac{1}{a}\arctan \frac{v}{a}
+\]   
+Entonces
+\[
+    \mathcal { L } \left\lbrace { \frac{sent}{t}}\right\rbrace  = \int_ { s } ^ { \infty }\mathcal { L } \left\lbrace {{ sen  t   }}\right\rbrace ds= \int_ { s } ^ { \infty } \frac{1}{s^{2}+1} ds
+\]
+\[
+=\arctan s\vert_{s}^ { \infty }
+\]
+\[
+=\lim_{s \to \infty} \arctan s-\arctan s
+\]
+\[
+=\frac{\pi}{2} -\arctan s
+\]
+\chapter{Función escalón}
+\section{Definición}
+También conocida como función Heaviside, la función escalón es importante para definir funciones por intervalos, como el pulso rectangular. 
+\\
+La transformada de Laplace de la función escalón está definida por:
+\\
+A partir de la definición de la Transformada de Laplace, obtenemos: 
+\[
+\mathcal { L } \left\lbrace {{u _{a} ( t )  }}\right\rbrace=\int_ { 0 } ^ { \infty } u _{a} ( t ) e^{-st} dt
+\]
+
+Sustituyendo, finalmente, obtenemos la fórmula de la Transformada de Laplace de la función escalón o Heaviside para $s>0$:
+\[
+u_{a}(t)= \left\{ \begin{array}{lcc}
+             0 &   si  & t < a \\
+             \\ 1 &  si & t > a \\
+             \end{array}
+   \right.
+ \]
+
+\[
+\mathcal { L } \left\lbrace {{u _{a} ( t )  }}\right\rbrace=\frac{1}{s} e^{-as}
+\]
+\newpage 
+\section{Código diseñado para hallar la ~\mbox{transformada} de ~\mbox{Laplace} de las funciones escalón o Heaviside en MATLAB}
+% CÓDIGO DE MATLAB PARA HALLAR LA TRANSFORMADA DE LAPLACE DE UNA FUNCIÓN ESCALÓN
+\verb@>> syms t@
+\\
+\verb@>> laplace(heaviside(t-2))@
+\\
+\verb@ans =exp(-2*s)/s@
+\\
+\verb@>> syms a positive;@
+\\
+\verb@>> laplace(heaviside(t-a))@
+\\
+\verb@ans =exp(-a*s)/s@
+\\\\
+
+\textbf{NOTA:} Fijarse en la forma de obtener la transformda de Laplace de la la función Heaviside $u(t-a)$, hay que especificar que $a$ es una variable simbólica positiva, en caso contrario, no sabrá calcular su transformada de Laplace.
+\chapter{Función impulso}
+\section{Definición}
+La respuesta al impulso o respuesta impulsiva es el comportamiento dinámico de un sistema cuando en su entrada se coloca un Delta de Dirac $(\delta(t))$ o impulso. Y a través de esta respuesta podremos caracterizar una función de transferencia y poder conocer el comportamiento del sistema ante cualquier tipo de entrada que se aplique.
+Al aplicar dicha función impulso o respuesta al impulso caso continuo sobre un sistema dinámico, y registrando el comportamiento de la salida, será posible caracterizar completamente el sistema y saber su comportamiento ante cualquier entrada, debido a un teorema de los sistemas dinámicos lineales conocido como el teorema de convolución.
+La convolución entre dos señales (En la próxima entrada abordaremos en más detalle la integral de convolución:
+\[
+y(t)=g(t)*u(t)= \int_ { 0 } ^ { \infty } g(t-\tau)u(\tau)d\tau= \int_ { 0 } ^ { \infty } g(t)u(t-\tau)d\tau
+\]
+Aplicando la transformada de Laplace a la convolución, nos da un simple producto entre la transformada de Laplace de $g(t)$ y la transformada de Laplace de $u(t)$.
+\[
+Y(s)=G(s)U(s)
+\]
+Con lo cual queda demostrado que a través de la respuesta impulsiva llegamos a la función de transferencia
+\[
+G(s)= \frac{Y(s)}{U(s)}
+\]
+\section{Propiedades de La Respuesta al Impulso Unitario}
+Volviendo a nuestra función de impulso únitario o Función Delta de Dirac, podremos obtener algunas propiedades interesantes que nos van a permitir obtener la respuesta del sistema ante un impulso.
+\\
+Por definición, la \textbf{integral} de una señal impulsional es:
+\[
+\int_ { -\infty } ^ { \infty } \delta(t)dt=1
+\]
+desplazando en el tiempo
+\[
+\int_ { -\infty } ^ { \infty } \delta(t-a)dt=1
+\]
+Matemáticamente, la función impulso transladada en el tiempo puede expresarse como:
+\[
+\delta(t)= \left\{ \begin{array}{lcc}
+             \infty   & t = a \\
+             \\ 0  & t \neq a \\
+             \end{array}
+   \right.
+ \]
+ \subsection{Propiedad de Filtrado de la Función Impulsiva}
+A partir de aqui, podemos analizar la propiedad de filtrado de la función impulso unitario continuo
+\[
+\int_ { -\infty } ^ { \infty } f(t)\delta(t-a)dt
+\]
+como la función es cero para todo valor diferente de $a$, puede reescribirse la integral de la siguiente forma:
+\[
+\int_ { -\infty } ^ { \infty } f(a)\delta(t-a)dt
+\]
+\[
+f(a)\int_ { -\infty } ^ { \infty }\delta(t-a)dt=f(a)
+\]
+Basicamente, si tengo una función cualquiera y la multiplico por el Delta de Dirac, la integral bajo la curva de ese producto, es la propia función en el punto donde se encuentra el impulso.
+\subsection{Transformada de Laplace para la función ~\mbox{impulso} unitario o función Heaviside}
+La transformada de Laplace de la función impulso viene dado por:
+\[
+\mathcal { L } \left\lbrace {\delta(t-a) }\right\rbrace=\int_ { 0 } ^ { \infty }\delta(t-a)e^{-st} dt
+\]
+\[
+\mathcal { L } \left\lbrace {\delta(t-a) }\right\rbrace=e^{-st}\vert_{t=a} = e^{-as}
+\]
+Y su caso particular para cuando $a=0$
+\[
+\mathcal { L } \left\lbrace {\delta(t) }\right\rbrace=1
+\]
+Otra propiedad interesante, es que la función de Delta de Dirac, puede ser vista como la derivada de un escalón unitario (función de Heaviside)
+\[
+\delta(t-a)=\frac{d}{dt}H(t-a)
+\]
+La derivada es nula en todo instante, con excepción del instante $a$, dado que la derivada es una medida de la variación de la función (en este caso ocurre una variación de 0 a 1 instantáneamente en el punto $a$), en el punto $a$ la derivada va a tender para infinito. Y como vimos anteriormente, la función que en un único punto tiende hacia infinito es el \textbf{Delta de Dirac.}
+\chapter{Ecuaciones diferenciales con fuerza discontinua}
+\section{Definición}
+Teorema de la Transformada de Laplace de una función discontinua:
+\[
+\mathcal { L } \left\lbrace {{f'( t )  }}\right\rbrace= s \mathcal { L } \left\lbrace {{f(t)}}\right\rbrace-f(0)-j(a_{1})e^{-a1s}-j(a_{2})e^{-a2s}-j(a_{3})e^{-a3s}...
+\]
+\subsection{Ejemplo}
+\begin{itemize}
+\item Encontrar una solución que satisfaga $x(0)=-1$ y que tenga un salto de $+2$ unidades en $t=1$, y sea continua en todos los demás puntos.
+\end{itemize}
+\subsection{Solución}
+\[
+\mathcal { L } \left\lbrace {{x'}}\right\rbrace= s \mathcal { L } \left\lbrace {{x}}\right\rbrace-x(0)-j(1)e^{-1s}
+\]
+\[
+\mathcal { L } \left\lbrace {{x'}}\right\rbrace= s \mathcal { L } \left\lbrace {{x}}\right\rbrace+1-2e^{-s}
+\]
+\[
+\mathcal { L } \left\lbrace {{x'}}\right\rbrace + \mathcal { L } \left\lbrace {{x}}\right\rbrace = 0
+\]
+\[
+s\mathcal { L } \left\lbrace {{x}}\right\rbrace + 1 - 2e^{-s} +\mathcal { L } \left\lbrace {{x}}\right\rbrace = 0
+\]
+\[
+(s+1)\mathcal { L } \left\lbrace {{x}}\right\rbrace=-1+2e^{-s}
+\]
+\[
+\mathcal { L } \left\lbrace {{x}}\right\rbrace= -\frac{1}{s+1} + \frac{2e^{-s}}{s+1}
+\]
+\[
+x= -L ^{-1} \left\lbrace {{\frac{1}{s+1}}}\right\rbrace + 2 L ^{-1} \left\lbrace {{\frac{e^{-s}}{s+1}}}\right\rbrace
+\]
+Recordar la fórmula de las siguientes transformadas inversas:
+\[
+L^{-1}  \left\lbrace {{\frac{1}{s-a}}}\right\rbrace= e^{at}  \qquad L ^{-1} \left\lbrace {{\frac{e^{-s}}{s+1}}}\right\rbrace= e^{-t+1} u_{1}(t)
+\] 
+Entonces, finalmente obtenemos:
+\[
+x=-e^{-t}+2e^{-t+1}u_{1}(t)
+\]
+\chapter{Conclusión}
+La Transformada de Laplace es muy útil en el campo de los sistemas de control, automatización en procesos. En el estudio de los procesos es necesario considerar modelos dinámicos, es decir, modelos de comportamiento variable respecto al tiempo. Esto trae como consecuencia el uso de ecuaciones diferencialespara representar matemáticamente el comportamiento de un proceso en el tiempo.
+La transformada de Laplace permite resolver ecuaciones diferenciales lineales mediante la transformación en ecuaciones algebraicas con lo cual se facilita su estudio.
+Una vez que se ha estudiado el comportamiento de los sistemas dinámicos, se puede proceder a diseñar y analizar los sistemas de control de manera simple.
+¿Cómo controlar un proceso mediante la trasformada de Laplace? Para diseñar un sistema de control automático, se requiere: Conocer el proceso que se desea controlar, es decir, la ecuación diferencial que describe su comportamiento, utilizando las leyes físicas, químicas y/o eléctricas. A esta ecuación diferencial se le llama modelo del proceso.
+\chapter{Referencias}
+\begin{itemize}
+\item \verb@https://es.wikipedia.org/wiki/Transformada_de_Laplace@
+\item \verb@http://www.sc.ehu.es/sbweb/fisica3/simbolico/laplace/laplace.html@
+\item \verb@https://www.youtube.com/watch?v=hdRa68c8UwA&list=PL9SnRnlzoyX25JXGxmFgMEnexFeml0zKu&index=161@
+\item \verb@https://www.youtube.com/watch?v=3axZp4hMQBU@
+\end{itemize}
+\end{document}
